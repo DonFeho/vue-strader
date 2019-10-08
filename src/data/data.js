@@ -1,13 +1,13 @@
 export default [
   {
     id: 1,
-    name: "GOOGLE",
+    name: "GITHUB",
     amount: 0,
     price: 75,
     lastprice: null,
     delta: null,
     imgSrc:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkx7qvFn-8LOVXnuW0Y1Js15zRJ8gvLFWblzAeu_xtjmTKziNW"
+      "https://png.pngtree.com/svg/20170916/github_600969.png"
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ export default [
     price: 80,
     lastprice: null,
     delta: null,
-    imgSrc: "https://logodix.com/logo/250011.jpg"
+    imgSrc: "http://pngimg.com/uploads/apple_logo/apple_logo_PNG19673.png"
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ export default [
     lastprice: null,
     delta: null,
     imgSrc:
-      "http://content.team2342.org/wp-content/uploads/2017/02/intel-square-768x768.png"
+      "https://logodix.com/logo/26328.png"
   },
   {
     id: 6,
@@ -69,13 +69,13 @@ export default [
   },
   {
     id: 8,
-    name: "AUDI",
+    name: "RANGE ROVER",
     amount: 0,
     price: 145,
     lastprice: null,
     delta: null,
     imgSrc:
-      "https://mpng.pngfly.com/20180208/lyw/kisspng-audi-car-logo-scalable-vector-graphics-audi-four-rings-logo-vector-material-5a7d073c62da82.1762113615181432924049.jpg"
+      "https://static.tildacdn.com/tild3061-6431-4161-a134-343661376238/lr.png"
   },
   {
     id: 9,

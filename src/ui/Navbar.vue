@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Top Menu -->
     <b-navbar id="main" toggleable="lg" type="dark" variant="dark" fixed="top">
       <b-container>
         <b-navbar-brand>
@@ -16,37 +17,30 @@
             <b-nav-item to="/">Home</b-nav-item>
             <b-nav-item to="/stocks">Trade Board</b-nav-item>
             <b-nav-item to="/portfolio">Trade Log</b-nav-item>
-            <!-- <b-nav-item to="/about">About</b-nav-item> -->
             <b-nav-item-dropdown
-              v-if="run"
-              v-show="tradeDay > 1"
+              v-show="!run && tradeDay > 1"
               text="Save / Load"
               right
             >
-              <b-dropdown-item href="#" @click="loadData(), showAlert()">
-                <strong class="text-dark">Load</strong>
+              <b-dropdown-item href="#" @click="loadData">
+                Load
               </b-dropdown-item>
-              <b-dropdown-item href="#" @click="saveData(), showAlert()">
-                <strong class="text-dark">Save</strong>
+              <b-dropdown-item href="#" @click="saveData">
+                Save
               </b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
-          <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item href="#">
-              <b-button
-                size="md"
-                :class="[run ? 'btn-success' : 'btn-danger']"
-                class="btn"
-                @click="run ? startTrade() : stopTrade(), (run = !run)"
-              >
-                {{ run ? "Run Trade" : "Stop Trade" }}
-              </b-button>
+              <!-- RUN Trade btn -->
+              <app-run></app-run>
             </b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-container>
     </b-navbar>
+
+    <!-- Bootom Menu -->
     <b-navbar
       id="control"
       type="dark"
@@ -55,65 +49,47 @@
       class="text-center"
     >
       <b-container>
-        <b-navbar-nav class="mr-auto text-left">
-          <b-nav-text class="">
-            <transition name="fade" mode="out-in">
-              <p class="text-info m-0">
-                Balance:
-                <transition name="slide" mode="out-in">
-                  <h4 class="text-gold" :key="funds">$ {{ funds }}</h4>
-                </transition>
-              </p>
-            </transition>
+        <b-navbar-nav class="mr-auto text-center">
+          <b-nav-text class="text-info m-0">
+            BALANCE
+            <h4 class="text-gold">
+              $
+              <transition name="slide" mode="out-in">
+                <strong :key="funds"> {{ funds }} </strong>
+              </transition>
+            </h4>
           </b-nav-text>
         </b-navbar-nav>
+
+        <!-- TradeMod Switch -->
         <b-navbar-nav class="mx-auto">
-          <b-nav-form class="text-center">
-            <app-switch></app-switch>
-          </b-nav-form>
+          <app-switch></app-switch>
         </b-navbar-nav>
+
         <b-navbar-nav class="ml-auto">
-          <b-nav-text class="p-0">
-            <p class="text-info lead m-0 p-0 m-0">
-              DAY
-              <transition name="slide" mode="out-in">
-                <h4 class="text-gold" :key="tradeDay">
-                  {{ tradeDay }}
-                </h4>
-              </transition>
-            </p>
+          <b-nav-text class="p-0 text-info">
+            DAY
+            <transition name="slide" mode="out-in">
+              <h4 class="text-gold" :key="tradeDay">
+                <strong> {{ tradeDay }} </strong>
+              </h4>
+            </transition>
           </b-nav-text>
         </b-navbar-nav>
       </b-container>
     </b-navbar>
-
-    <b-alert
-      :show="dismissCountDown"
-      dismissible
-      variant="success"
-      @dismissed="dismissCountDown = 0"
-      @dismiss-count-down="countDownChanged"
-      style="position: absolute; top: 100px; right: 500px; width: 250px; height: 50px;"
-    >
-      <p>Data Fetched ...</p>
-    </b-alert>
   </div>
 </template>
 
 <script>
 import Switch from "@/ui/Switch.vue";
+import RunBtn from "@/ui/RunBtn.vue";
 import { mapActions } from "vuex";
 
 export default {
-  data() {
-    return {
-      run: true,
-      dismissSecs: 2,
-      dismissCountDown: 0
-    };
-  },
   components: {
-    appSwitch: Switch
+    appSwitch: Switch,
+    appRun: RunBtn
   },
   computed: {
     funds() {
@@ -124,15 +100,15 @@ export default {
     },
     stocks() {
       return this.$store.getters.stocks;
+    },
+    run() {
+      return this.$store.getters.run;
     }
   },
   methods: {
     ...mapActions({
-      updateMarket: "updateMarket",
-      nextDay: "nextDay",
       setData: "loadData"
     }),
-
     saveData() {
       const data = {
         funds: this.$store.getters.funds,
@@ -145,26 +121,6 @@ export default {
 
     loadData() {
       this.setData();
-    },
-
-    startTrade() {
-      this.marketSpeed = setInterval(() => {
-        this.nextDay(), this.updateMarket();
-      }, 5000);
-
-      this.nextDay();
-      this.updateMarket();
-      this.run === false;
-    },
-    stopTrade() {
-      clearInterval(this.marketSpeed);
-    },
-
-    countDownChanged(dismissCountDown) {
-      this.dismissCountDown = dismissCountDown;
-    },
-    showAlert() {
-      this.dismissCountDown = this.dismissSecs;
     }
   }
 };

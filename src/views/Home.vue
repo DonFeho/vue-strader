@@ -11,9 +11,9 @@
             explicabo quaerat animi recusandae officiis quisquam nam maiores?
             Quas delectus voluptatibus ratione exercitationem!
           </p>
-       
-        <br />
-       
+
+          <br />
+
           <p class="text-light">
             Lorem ipsum dolor sit amet consectetur adipisuasi! Corrupti iste
             quaerat nobis provident aspernatur iure, architecto sed, consequatur

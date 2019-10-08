@@ -12,8 +12,8 @@
 
 <script>
 import Stock from "@/components/stocks/Stock.vue";
-
 import { mapActions } from "vuex";
+
 export default {
   components: {
     appStock: Stock
@@ -34,8 +34,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.stocks-container {
-  padding: 3rem 0 6rem 0;
-}
-</style>
+<style lang="scss"></style>

@@ -3,11 +3,7 @@
     <h2 class="pt-5 text-left text-light">Trade Log</h2>
     <hr />
     <b-row class="py-5">
-      <app-order
-        v-for="(order, index) in orders"
-        v-bind:key="index"
-        :order="order"
-      >
+      <app-order v-for="(order, index) in orders" :key="index" :order="order">
         {{ order }}
       </app-order>
     </b-row>
@@ -29,4 +25,5 @@ export default {
   }
 };
 </script>
+
 <style lang="scss"></style>
