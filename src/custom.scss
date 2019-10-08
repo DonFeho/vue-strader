@@ -1,0 +1,110 @@
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
+
+
+$sellColor: #9459d8;
+$buyColor: #24c204;
+
+
+label.custom-control-label::before {
+  background-color: $buyColor;
+  border-color: white;
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: $sellColor !important;
+  border-color: white !important;
+}
+
+::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+.text-gold {
+  color: goldenrod;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.text-sell {
+  color: $sellColor;
+  font-weight: 600;
+  letter-spacing: 0.5px; 
+}
+.text-buy {
+  color: $buyColor;
+  font-weight: 600;
+  letter-spacing: 0.5px; 
+}
+
+.btn-sell {
+  border: none;
+  background-color: $sellColor;
+  &:hover {
+    background-color: $sellColor;
+  }
+}
+.btn-buy {
+  border: none;
+  background-color: $buyColor;
+  &:hover {
+    background-color: $buyColor;
+  }
+}
+
+
+
+.slide-enter-active {
+  animation: slide-in 0.2s ease-out forwards;
+  
+}
+.slide-leave-active {
+  animation: slide-out 0.2s ease-out forwards;
+ 
+}
+.fade-enter-active {
+  
+  animation: fade-in 0.2s ease-out forwards;
+}
+.fade-leave-active {
+  
+  animation: fade-out 0.2s ease-out forwards;
+}
+@keyframes slide-in {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+@keyframes fade-in {
+  from {
+    
+    opacity: 0;
+  }
+  to {
+    
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  from {    
+    opacity: 1;
+  }
+  to {   
+    opacity: 0;
+  }
+}

@@ -6,7 +6,6 @@ export const loadData = ({ commit }) => {
     .then(response => response.json())
 
     .then(data => {
-
       if (data) {
         const stocks = data.stocks;
         const funds = data.funds;
@@ -18,7 +17,7 @@ export const loadData = ({ commit }) => {
         commit("SET_STOCKS", stocks);
         commit("SET_PORTFOLIO", portfolio);
       }
-    })
+    });
   // .catch(err => {
   //   alert(err.msg);
   // })
