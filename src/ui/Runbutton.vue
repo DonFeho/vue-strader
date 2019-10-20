@@ -16,7 +16,7 @@ export default {
       run: state => state.stocks.run,
       tradeMode: state => state.stocks.tradeMode,
       stocks: state => state.stocks.stocks
-    })    
+    })     
   },
   methods: {
     ...mapActions(["updateMarket", "nextDay", "setRun"]),

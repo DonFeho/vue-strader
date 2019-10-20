@@ -26,7 +26,7 @@
           <!-- RUN Trade btn -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item href="#">
-              <runbtn></runbtn>
+              <runbutton></runbutton>
             </b-nav-item>
           </b-navbar-nav>
         </b-collapse>
@@ -75,12 +75,12 @@
 
 <script>
 import Trade from "@/ui/Trade.vue";
-import Runbtn from "@/ui/Runbtn.vue";
+import Runbutton from "@/ui/Runbutton.vue";
 import { mapActions, mapState } from "vuex";
 export default {
   components: {
     Trade,
-    Runbtn
+    Runbutton 
   },
   computed: {
     ...mapState({
