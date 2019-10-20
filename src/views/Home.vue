@@ -32,7 +32,7 @@
             nisi.
           </p>
           
-          <router-link tag="a" to="/stoks" class="text-white text-decoration-none mt-2 btn btn-sell"> 
+          <router-link tag="a" to="/stocks" class="text-white text-decoration-none mt-2 btn btn-sell"> 
             To Trade             
           </router-link>           
          

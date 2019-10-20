@@ -11,6 +11,7 @@ const initialState = {
   tradeDay: 1,
   run: false,
   tradeMode: true
+
 };
 
 const mutations = {
@@ -20,14 +21,14 @@ const mutations = {
   set_run(state) {
     state.run = !state.run;
   },
+  buy_sell(state) {
+    state.tradeMode = !state.tradeMode;
+  },
   set_order(state, order) {
     state.orders.unshift(order);
   },
   next_day(state) {
     state.tradeDay += 1;
-  },
-  buy_sell(state) {
-    state.tradeMode = !state.tradeMode;
   },
   set_day(state, tradeDay) {
     state.tradeDay = tradeDay;
@@ -86,19 +87,29 @@ const actions = {
   setOrders: ({ commit }, orders) => {
     commit("set_orders", orders);
   },
-  loadData: ({ commit }) => {
-    Vue.http
-      .get("data.json")
-      .then(response => response.json())
-      .then(data => {
-        if (data) {
-          commit("set_stocks", data.stocks);
-          commit("set_day", data.tradeDay);
-          commit("set_funds", data.funds);
-          commit("set_orders", data.orders);
-        }
-      });
+  setDay: ({ commit }, tradeDay) => {
+    commit("set_day", tradeDay);
+  },
+
+  load: ({ commit }, data) => {
+    commit("set_stocks", data.stocks);
+    commit("set_day", data.tradeDay);
+    commit("set_funds", data.funds);
+    commit("set_orders", data.orders);
   }
+  // loadData: ({ commit }) => {
+  //   Vue.http
+  //     .get("data.json")
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       if (data) {
+  //         commit("set_stocks", data.stocks);
+  //         commit("set_day", data.tradeDay);
+  //         commit("set_funds", data.funds);
+  //         commit("set_orders", data.orders);
+  //       }
+  //     });
+  // }
 };
 
 const getters = {

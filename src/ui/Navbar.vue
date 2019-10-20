@@ -77,6 +77,8 @@
 import Trade from "@/ui/Trade.vue";
 import Runbutton from "@/ui/Runbutton.vue";
 import { mapActions, mapState } from "vuex";
+import axios from "axios";
+
 export default {
   components: {
     Trade,
@@ -92,16 +94,30 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["loadData"]),
+    ...mapActions(['load']),
     saveData() {
       const data = {
         funds: this.funds,
         stocks: this.stocks,
         tradeDay: this.tradeDay,
         orders: this.orders
-      };
-      this.$http.put("data.json", data);
-    }    
+      };      
+      axios.put("https://vue-strader.firebaseio.com/data.json", data)
+        .then(res => alert('Saved Success!'))
+        .catch(error => alert('Save Failed...'));
+    },
+    loadData() {      
+      axios.get("https://vue-strader.firebaseio.com/data.json")        
+        .then(res => {          
+          const data = res.data; 
+          if(data) {
+            this.load(data);            
+          }         
+        })
+        .catch(error => {
+          alert("Load Failed...")  
+        });
+    }
   }
 };
 </script>
