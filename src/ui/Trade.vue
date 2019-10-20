@@ -9,7 +9,7 @@
     >
       <b-form-checkbox
         name="check-button"
-        @change="switchM(), toTrade()"
+        @change="switchMode(), toTrade()"
         switch
         size="lg"
       >
@@ -20,26 +20,21 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
+import { mapActions, mapState } from "vuex";
 export default {
-  computed: {
-    tradeMode() {
-      return this.$store.getters.tradeMode;
-    }
+  computed: { 
+    ...mapState({
+      tradeMode: state => state.stocks.tradeMode
+    })    
   },
   methods: {
-    ...mapActions({
-      switchM: "switchMode"
-    }),
+    ...mapActions(["switchMode"]),
     toTrade() {
-      const cLoc = this.$router.currentRoute.name;
-      if (cLoc !== "stocks") {
+      const curLocation = this.$router.currentRoute.name;
+      if (curLocation !== "stocks") {
         this.$router.push("/stocks");
       }
     }
   }
 };
 </script>
-
-<style lang="scss"></style>

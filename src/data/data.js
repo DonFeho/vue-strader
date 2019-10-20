@@ -3,7 +3,7 @@ export default [
     id: 1,
     name: "GITHUB",
     amount: 0,
-    price: 75,
+    price: 49,
     lastprice: null,
     delta: null,
     imgSrc:
@@ -24,7 +24,7 @@ export default [
     id: 3,
     name: "FACEBOOK",
     amount: 0,
-    price: 72,
+    price: 45,
     lastprice: null,
     delta: null,
     imgSrc:
@@ -34,20 +34,21 @@ export default [
     id: 4,
     name: "APPLE",
     amount: 0,
-    price: 80,
+    price: 58,
     lastprice: null,
     delta: null,
     imgSrc: "http://pngimg.com/uploads/apple_logo/apple_logo_PNG19673.png"
   },
   {
     id: 5,
-    name: "INTEL",
+    name: "MICROSOFT",
     amount: 0,
     price: 64,
     lastprice: null,
     delta: null,
     imgSrc:
-      "https://logodix.com/logo/26328.png"
+      "https://cdn1.iconfinder.com/data/icons/flat-and-simple-part-1/128/microsoft-512.png"
+
   },
   {
     id: 6,
@@ -62,7 +63,7 @@ export default [
     id: 7,
     name: "TESLA",
     amount: 0,
-    price: 95,
+    price: 54,
     lastprice: null,
     delta: null,
     imgSrc: "https://www.freepnglogos.com/uploads/tesla-logo-png-silver-10.png"
@@ -71,7 +72,7 @@ export default [
     id: 8,
     name: "RANGE ROVER",
     amount: 0,
-    price: 145,
+    price: 45,
     lastprice: null,
     delta: null,
     imgSrc:

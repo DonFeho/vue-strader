@@ -12,9 +12,7 @@
             Quas delectus voluptatibus ratione exercitationem!
           </p>
 
-          <br />
-
-          <p class="text-light">
+          <p class="text-light mt-2">
             Lorem ipsum dolor sit amet consectetur adipisuasi! Corrupti iste
             quaerat nobis provident aspernatur iure, architecto sed, consequatur
             cumque, repellendus voluptate vero assumenda quibusdam accusantium
@@ -33,20 +31,15 @@
             delectus, quam quaerat amet totam rem voluptatum nulla libero ab
             nisi.
           </p>
-          <b-button class="mt-2 btn btn-sell" @click="toTrade">
-            To Trade
-          </b-button>
+          
+          <router-link tag="a" to="/stoks" class="text-white text-decoration-none mt-2 btn btn-sell"> 
+            To Trade             
+          </router-link>           
+         
         </b-col>
       </b-row>
     </b-container>
   </b-container>
 </template>
-<script>
-export default {
-  methods: {
-    toTrade() {
-      this.$router.push("/stocks");
-    }
-  }
-};
-</script>
+
+

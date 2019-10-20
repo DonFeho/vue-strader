@@ -1,8 +1,7 @@
 <template>
   <transition name="slide" mode="out-in">
     <b-col
-      class="mx-auto"
-      xs="auto"
+      class="mx-auto"      
       sm="10"
       md="6"
       lg="4"
@@ -17,10 +16,8 @@
         img-width="80px"
         img-left
         tag="h6"
-        :class="[stock.amount > 0 ? 'card-cutted' : 'card-cutted-reverse']"
- 
-        style="max-width: auto; color: white;"
-        class="m-3 border-0 text-left stock-card"
+        :class="[stock.amount > 0 ? 'card-cutted' : 'card-cutted-reverse']"        
+        class="m-3 border-0 text-left text-white stock-card"
       >
         <b-card-text v-show="stock.amount">
           <transition name="fade" mode="out-in">
@@ -32,7 +29,6 @@
             {{ stock.amount > 1 ? "stocks" : "stock" }}
           </span>
         </b-card-text>
-
         <b-card-text>
           Today Price: 
           <transition name="fade" mode="out-in">
@@ -41,7 +37,6 @@
             </strong>
           </transition>
         </b-card-text>
-
         <b-card-text v-if="tradeDay > 1">
           Last Price: $
           <transition name="fade" mode="out-in">
@@ -50,7 +45,6 @@
             </strong>
           </transition>
         </b-card-text>
-
         <b-card-text v-if="tradeDay > 1">
           Delta Price: $
           <transition name="fade" mode="out-in">
@@ -81,7 +75,7 @@
               <b-button
                 v-show="tradeMode"
                 class="btn"
-                @click="setOrder('buy')"
+                @click="pushOrder('buy')"
                 :disabled="noFunds || quantity <= 0"
                 :class="[noFunds ? 'btn-danger' : 'btn-buy']"
               >
@@ -90,7 +84,7 @@
               <b-button
                 v-show="!tradeMode"
                 class="btn"
-                @click="setOrder('sell')"
+                @click="pushOrder('sell')"
                 :disabled="noStocks || quantity <= 0"
                 :class="[noStocks ? 'btn-danger' : 'btn-sell']"
               >
@@ -105,10 +99,7 @@
 </template>
 
 <script>
-
-
-
-
+import { mapActions, mapState } from "vuex"; 
 export default {
   props: ["stock"],
   data() {
@@ -117,43 +108,32 @@ export default {
     };
   },
   computed: {
-    funds() {
-      return this.$store.getters.funds;
-    },
-    tradeDay() {
-      return this.$store.getters.tradeDay;
-    },
+    ...mapState({
+      funds: state => state.stocks.funds,
+      tradeMode: state => state.stocks.tradeMode,
+      tradeDay: state => state.stocks.tradeDay
+    }), 
     noFunds() {
       return this.quantity * this.stock.price > this.funds;
     },
     noStocks() {
       return this.quantity > this.stock.amount;
-    },
-    tradeMode() {
-      return this.$store.getters.tradeMode;
-    }
+    }  
   },
-
   methods: {
-    setOrder(type) {
-      const stockId = this.stock.id;
-      const stockImgsrc = this.stock.imgSrc;
-      const stockName = this.stock.name;
-      const stockPrice = this.stock.price;
-      const stockQuantity = this.quantity;
-      const orderPrice = stockPrice * stockQuantity;
-      const orderType = type;
+    ...mapActions(['setOrder', 'changeStock']),
+    pushOrder(type) {        
       const order = {
-        stockId: stockId,
-        stockImgsrc: stockImgsrc,
-        stockName: stockName,
-        stockPrice: stockPrice,
-        stockQuantity: Number.parseInt(stockQuantity, 0),
-        orderPrice: Number.parseInt(orderPrice, 0),
-        orderType: orderType
+        stockId: this.stock.id,
+        stockImgsrc: this.stock.imgSrc,
+        stockName: this.stock.name,
+        stockPrice: this.stock.price,
+        stockQuantity: Number.parseInt(this.quantity, 0),
+        orderPrice: Number.parseInt(this.stock.price * this.quantity, 0),
+        orderType: type
       };
-      this.$store.dispatch("setOrder", order);
-      this.$store.dispatch("changeStock", order);
+      this.setOrder(order);    
+      this.changeStock(order);    
       this.quantity = null;
     }
   }

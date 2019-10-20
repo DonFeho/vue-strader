@@ -18,7 +18,6 @@
         {{ order.orderType }} {{ order.stockQuantity }} st. | $
         {{ order.stockPrice }}
       </b-card-text>
-
       <b-card-text class="text-dark">
         Total: $ {{ order.orderPrice }}
       </b-card-text>

@@ -3,35 +3,25 @@
     <h2 class="pt-5 text-left text-light">Stocks Trade Board</h2>
     <hr />
     <b-row class="">
-      <app-stock v-for="stock in stocks" v-bind:key="stock.id" :stock="stock">
+      <stock v-for="stock in stocks" v-bind:key="stock.id" :stock="stock">
         {{ stock }}
-      </app-stock>
+      </stock>
     </b-row>
   </b-container>
 </template>
 
 <script>
 import Stock from "@/components/stocks/Stock.vue";
-import { mapActions } from "vuex";
-
+import { mapActions, mapState } from "vuex";
 export default {
   components: {
-    appStock: Stock
+    Stock
   },
   computed: {
-    stocks() {
-      return this.$store.getters.stocks;
-    },
-    tradeMode() {
-      return this.$store.getters.tradeMode;
-    }
-  },
-  methods: {
-    ...mapActions({
-      switchM: "switchMode"
-    })
-  }
+    ...mapState({     
+      tradeMode: state => state.stocks.tradeMode,
+      stocks: state => state.stocks.stocks,
+    }),   
+  } 
 };
 </script>
-
-<style lang="scss"></style>
