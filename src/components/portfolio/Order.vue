@@ -1,32 +1,38 @@
 <template>
-  <b-col class="mx-auto" sm="auto" md="6" lg="4" xl="4">
-    <b-card
-      :title="order.stockName"
-      :img-src="order.stockImgsrc"
-      img-alt="Image"
-      img-height="80px"
-      img-width="80px"
-      img-left
-      tag="h5"
-      style="max-width: 22rem;"
-      class="p-3 m-4 border-0 text-left stock-card text-light"
-    >
-      <b-card-text
-        class=""
-        :class="[order.orderType === 'buy' ? 'text-buy' : 'text-sell']"
+  <div
+    class="p-4 w-1/4 flex-none stock-card mx-auto opacity-90 hover:opacity-100"
+  >
+    <div class="stock-head">
+      <img
+        :src="order.stockImgsrc"
+        :alt="order.stockName"
+        class="w-24 h-24 mr-4 float-left block"
       >
-        {{ order.orderType }} {{ order.stockQuantity }} st. | $
+      <span class="text-light">
+        <strong> {{ order.stockName }} </strong>
+      </span>
+      <p
+        class="font-extra-bold font-2xl"
+        :class="[order.orderType === 'buy' ? 'text-buy font-bold' : 'text-sell font-bold']"
+      >
+        {{ order.orderType }}
+      </p>
+      <p class="text-light">
+         {{ order.stockQuantity }} st. | $
         {{ order.stockPrice }}
-      </b-card-text>
-      <b-card-text class="text-dark">
+      </p>
+      <p class="text-light font-bold">
         Total: $ {{ order.orderPrice }}
-      </b-card-text>
-    </b-card>
-  </b-col>
+      </p>
+
+    </div>
+
+  </div>
+
 </template>
 
 <script>
 export default {
-  props: ["order"]
-};
+  props: ['order']
+}
 </script>

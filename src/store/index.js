@@ -1,15 +1,15 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue'
+import Vuex from 'vuex'
 // Modules
-import stocks from "./modules/stocks";
+import stocks from './stocks'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     stocks
   }
-});
+})
 
 // export const store = new Vuex.Store({
 //   modules: {

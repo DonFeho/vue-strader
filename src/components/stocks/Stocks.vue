@@ -1,27 +1,24 @@
 <template>
-  <b-container class="stocks-container">
-    <h2 class="pt-5 text-left text-light">Stocks Trade Board</h2>
+  <div class="container mx-auto">
+    <h2 class="text-xl text-left font-bold text-light">Stocks Trade Board</h2>
     <hr />
-    <b-row class="">
-      <stock v-for="stock in stocks" v-bind:key="stock.id" :stock="stock">
-        {{ stock }}
-      </stock>
-    </b-row>
-  </b-container>
+    <div class="flex flex-row flex-wrap items-stretch content-center justify-center">
+      <stock v-for="stock in stocks" :key="stock.id" :stock="stock" />
+    </div>
+  </div>
 </template>
-
 <script>
-import Stock from "@/components/stocks/Stock.vue";
-import { mapActions, mapState } from "vuex";
+import Stock from '@/components/stocks/Stock.vue'
+import { mapState } from 'vuex'
 export default {
   components: {
     Stock
   },
   computed: {
-    ...mapState({     
+    ...mapState({
       tradeMode: state => state.stocks.tradeMode,
-      stocks: state => state.stocks.stocks,
-    }),   
-  } 
-};
+      stocks: state => state.stocks.stocks
+    })
+  }
+}
 </script>
