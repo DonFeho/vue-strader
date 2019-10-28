@@ -1,26 +1,26 @@
 <template>
-  <div id="app">
-    <b-container class="m-0 p-0 bg-fluid" fluid>
-      <navbar></navbar>
-      <transition name="slide" mode="out-in">
-        <router-view />
-      </transition>
-    </b-container>
+  <div class="font-sans" id="app">
+    <navbar></navbar>
+    <section
+      class="bg-fluid min-h-screen h-full bg-fixed bg-center bg-no-repeat bg-cover py-32">
+      <div class="max-w-6xl mx-auto px-5 w-full">
+        <transition name="slide" mode="out-in">
+          <router-view />
+        </transition>
+      </div>
+    </section>
   </div>
 </template>
 <script>
-import Navbar from "@/ui/Navbar.vue";
-import { mapActions } from 'vuex';
+import Navbar from '@/components/ui/Navbar.vue'
 export default {
   components: {
     Navbar
-  },
-  created() {  
-    this.initStocks();  
-  },
-  methods: {
-    ...mapActions(['initStocks'])
   }
-};
+}
 </script>
-
+<style scoped>
+.bg-fluid {
+  background: url("https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg");
+}
+</style>
