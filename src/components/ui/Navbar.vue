@@ -12,7 +12,7 @@
       <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
         <div class="text-sm sm:flex-grow">
           <router-link tag="a" to="/stocks" class="text-light hover:text-gold block mt-4 sm:inline-block sm:mt-0 mr-4">Trade Board</router-link>
-          <router-link tag="a" to="/portfolio" class="text-light hover:text-gold block mt-4 sm:inline-block sm:mt-0 mr-4">Trade Log</router-link>
+          <router-link tag="a" to="/portfolio" class="text-light hover:text-gold block mt-4 sm:inline-block sm:mt-0 mr-4">Portfolio</router-link>
           <div class="mt-4 sm:inline-block sm:mt-0 mr-4">
             <trade></trade>
           </div>

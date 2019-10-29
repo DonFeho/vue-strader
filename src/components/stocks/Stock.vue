@@ -1,10 +1,10 @@
 <template>
   <div
     v-if="tradeMode || stock.amount > 0"
-    class="p-4 flex flex-col flex-shrink-0 sm:w-4/5 md:w-1/2 lg:w-1/3 xl:w-1/3 stock-card bg-blue opacity-85 hover:opacity-100"
+    class="p-4 flex flex-col sm:flex-shrink-1 sm:w-4/5 md:w-1/2 lg:w-1/3 xl:w-1/3 stock-card bg-blue opacity-85 hover:opacity-100"
     :class="[stock.amount > 0 ? 'rounded-tl-card-tl rounded-br-card-br shadow-card opacity-100' : 'rounded-tl-cardrev-tl']"
   >
-    <div class="w-70 mb-2">
+    <div class="md:w-70 mb-2">
       <img
         :src="stock.imgSrc"
         :alt="stock.name"
